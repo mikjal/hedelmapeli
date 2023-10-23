@@ -1,0 +1,10 @@
+.rullat {
+    width: 80px;
+    height: 80px;
+    background-image: url('rulla80.png');
+    background-position: 0px 0px;
+    background-repeat: repeat-y;
+    margin: 1px;
+    border: 2px solid black;
+}
+
