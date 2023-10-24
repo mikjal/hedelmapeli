@@ -8,3 +8,14 @@
     border: 2px solid black;
 }
 
+.teksti {
+    width: 80px;
+    margin: 0 3px;
+    font-size: large;
+    text-align: center;
+}
+
+#voittoteksti {
+    display: none;
+}
+

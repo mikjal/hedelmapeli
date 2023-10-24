@@ -1,3 +1,5 @@
+let arvot = [0,0,0,0];
+let kuvat = ['omena','rypäle','kirsikka','seiska','meloni'];
 
 function painallus() {
     
@@ -14,15 +16,94 @@ function pyoritaRullaa(rulla,ndx) {
     let yPaikka = parseInt(getComputedStyle(rulla).backgroundPositionY);
     rulla.style.transition = 'background-position-y '+(8 + lisays)*aikaPerKuva + 'ms';
     rulla.style.backgroundPositionY = yPaikka + lisays * 80 + 'px';
-/*
-    console.log(lisays,yPaikka)
-*/
+    /* console.log((yPaikka/80+lisays)%5); */
+    return (yPaikka/80+lisays)%5;
 }
 
 function pyoritaKaikkiaRullia() {
+
+    document.querySelector('#voittoteksti').style.display = 'none';
+
     document.querySelectorAll('.rullat').forEach((val, ndx) => {
-        pyoritaRullaa(val,ndx);
+        arvot[ndx]=pyoritaRullaa(val,ndx);
+    });
+
+    document.querySelectorAll('.teksti').forEach((val) => {
+        val.innerHTML = '-';
     });
     
+
+}
+
+document.querySelector('#rulla4').addEventListener('transitionend', () => {
+    let lkm = [0,0,0,0,0];
+    document.querySelectorAll('.teksti').forEach((val,ndx) => {
+        val.innerHTML = kuvat[arvot[ndx]];
+        lkm[arvot[ndx]] += 1;
+    });
+
+    for(let i=0;i<lkm.length;i++) {
+        if(lkm[i] == 4 || (i == 3 && lkm[i] == 3)) {
+            document.querySelector('#voittoteksti').style.display = 'initial';
+        }
+    }
+});
+
+/*
+0 = omena
+1 = rypale
+2 = kirsikka
+3 = seiska
+4 = meloni
+*/
+
+
+window.onload = () => {
+
+    let pngkuva = document.createElement('img');
+    pngkuva.src = 'rulla80.png';
+    /*
+    kele.width = 80;
+    kele.height = 400;
+    */
+    /*
+    document.querySelector('#testi-alue').appendChild(kele);
+    */
+
+    let cnvs = document.createElement('canvas'), cntx = cnvs.getContext('2d');
+    cnvs.width = 40;
+    cnvs.height = 40;
+
+    /*
+    let kuva = document.querySelector('#testikuva');
+    */
+    /* drawImage: source image, source-x-start, source-y-start, source-width, source-height, dest-x-start, dest-y-start, dest-width, dest-height */
+    let kohta = 0;
+    cntx.drawImage(pngkuva,0,kohta,80,80,0,0,40,40);
+    /* source-y-start: 0 = omena, 80 = meloni, 160 = seiska, 240 = kirsikka, 320 = rypale */
+    
+
+    let image = cnvs.toDataURL('image/png'); /* .replace('image/png','image/octet-stream'); */
+    let img = document.createElement('img');
+    img.src = image;
+    document.querySelector('#omena').appendChild(img);
+    
+    cntx.clearRect(0,0,40,40);
+    kohta = 320;
+    cntx.drawImage(pngkuva,0,kohta,80,80,0,0,40,40);
+
+    image = cnvs.toDataURL('image/png');
+    img = document.createElement('img');
+    img.src = image;
+    document.querySelector('#rypale').append(img);
+
+    cntx.clearRect(0,0,40,40);
+    kohta = 240;
+    cntx.drawImage(pngkuva,0,kohta,80,80,0,0,40,40);
+
+    image = cnvs.toDataURL('image/png');
+    img = document.createElement('img');
+    img.src = image;
+    document.querySelector('#kirsikka').append(img);
 
 }

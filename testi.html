@@ -6,6 +6,9 @@
     <title>Hedelmäpeli</title>
     <!-- Oma CSS-->
     <link rel="stylesheet" href="testi-tyylit.css">
+    
+    <!-- Tarvitaan että drawImage toimii oikein Chromessa heti sivun latautuessa -->
+    <link rel="preload" as="image" href="rulla80.png"> 
 
 </head>
 <body style="background-color: grey;">
@@ -15,7 +18,23 @@
         <div id="rulla3" class="rullat"></div>
         <div id="rulla4" class="rullat"></div>
     </div>
+    <div style="display: flex;">
+        <div class="teksti">omena</div>
+        <div class="teksti">omena</div>
+        <div class="teksti">omena</div>
+        <div class="teksti">omena</div>
+    </div>
     <button id="testbutton" type="button" onclick="pyoritaKaikkiaRullia();" style="margin: 10px 2px;">Paina</button>
+    <br><h1 id="voittoteksti">Voitto!</h1>
+    <br>
+    <div id="testi-alue">
+<!--
+        <img src="rulla80.png" id="testikuva" style="display: initial;" width="80" height="400">
+-->
+        <div id="omena"></div>
+        <div id="rypale"></div>
+        <div id="kirsikka"></div>
+    </div>
 <!-- Oma JavaScript-->
 <script src="testi-skriptit.js"></script>    
 
