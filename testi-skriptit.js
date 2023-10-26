@@ -62,21 +62,11 @@ window.onload = () => {
 
     let pngkuva = document.createElement('img');
     pngkuva.src = 'rulla80.png';
-    /*
-    kele.width = 80;
-    kele.height = 400;
-    */
-    /*
-    document.querySelector('#testi-alue').appendChild(kele);
-    */
 
     let cnvs = document.createElement('canvas'), cntx = cnvs.getContext('2d');
     cnvs.width = 40;
     cnvs.height = 40;
 
-    /*
-    let kuva = document.querySelector('#testikuva');
-    */
     /* drawImage: source image, source-x-start, source-y-start, source-width, source-height, dest-x-start, dest-y-start, dest-width, dest-height */
     let kohta = 0;
     cntx.drawImage(pngkuva,0,kohta,80,80,0,0,40,40);

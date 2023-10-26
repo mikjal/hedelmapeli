@@ -19,3 +19,20 @@
     display: none;
 }
 
+.kehys {
+    width: 40px;
+    height: 40px; 
+    border: 1px solid black;
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+#pieniomena {
+    transform: scale(0.5) translate(0,0px); 
+    transform-origin: 0% 0%;
+}
+
+#pienimeloni {
+    transform: scale(0.5) translate(0,-80px); 
+    transform-origin: 0% 0%;
+}

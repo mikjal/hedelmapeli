@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light"> <!-- Oletuksena vaalea teema-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hedelmäpeli</title>
+    <!-- Google material icon fonts-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Oma CSS-->
+    <link rel="stylesheet" href="css/tyylit.css">
+</head>
+<body>
+    <noscript>
+        <div style="background-color: red; color: white;">
+        <strong>JavaScript ei ole käytössä! Sivu tarvitsee JavaScriptiä toimiakseen oikein.<br>JavaScript is disabled! This page requires JavaScript to work properly.</strong>
+        </div>
+    </noscript>
+    <script>
+        if (window.navigator.userAgent.indexOf('MSIE ') > 0 || window.navigator.userAgent.indexOf('Trident/') > 0) { document.write('<h1>Internet Explorer is not supported! Internet Exloreria ei tueta!</h1>'); window.stop(); }
+    </script>
+    <!-- navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-secondary">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="Javascript" width="32">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSisalto">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSisalto">
+                <ul class="navbar-nav nav-underline">
+                    <li class="nav-item">
+                        <a href="../kaverilistav1/index.html" class="nav-link">Kaverilista v1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../kaverilistav2/index.html" class="nav-link">Kaverilista v2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../lampotilamuunnin/index.html" class="nav-link">Lämpötilamuunnin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../lomake/index.html" class="nav-link">Lomake</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../clicker/index.html" class="nav-link">Clicker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../sikanoppapeli/index.html" class="nav-link">Sikanoppa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Hedelmäpeli</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-auto">
+                    <button class="nav-link"><span class="material-icons align-middle" style="font-size: 24px;" id="teemakuvake">dark_mode</span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- varsinainen sivun sisältö-->
+            <h1 class="display-6 fw-bold text-center p-2">Hedelmäpeli</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-4 px-1 mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-row justify-content-center"> <!-- flexdiv -->
+                                <div class="d-grid"><div class="rulla" id="rulla1"></div><button class="btn btn-sm mt-2 mx-2" data-bs-toggle="button">Lukitse</button></div>
+                                <div class="d-grid"><div class="rulla" id="rulla2"></div><button class="btn btn-sm mt-2 mx-2" data-bs-toggle="button">Lukitse</button></div>
+                                <div class="d-grid"><div class="rulla" id="rulla3"></div><button class="btn btn-sm mt-2 mx-2" data-bs-toggle="button">Lukitse</button></div>
+                                <div class="d-grid"><div class="rulla" id="rulla4"></div><button class="btn btn-sm mt-2 mx-2" data-bs-toggle="button">Lukitse</button></div>
+                            </div>
+                           <div class="flexdiv">
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-2 px-1 mt-2">
+                    <div class="card">
+                        <div class="card-body text-center p-2">
+                            <div class="fs-4 fw-bold">Rahaa</div>
+                            <div class="fs-5 fw-bold">50 €</div>
+                            <div class="fs-4 fw-bold">Panos</div>
+                            <div class="fs-5 fw-bold">1 €</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <!-- Oma JavaScript-->
+        <script src="teema.js"></script>    
+        <script src="js/skriptit.js"></script>    
+    </body>
+    </html>

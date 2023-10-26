@@ -1,0 +1,16 @@
+.flexdiv {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.rulla {
+    width: 80px;
+    height: 80px;
+    background-image: url('../rulla80.png');
+    background-position: 0px 0px;
+    background-repeat: repeat-y;
+    border: 2px solid black;
+    margin: 0 5px;
+}
+
