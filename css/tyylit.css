@@ -1,8 +1,10 @@
+/*
 .flexdiv {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
 }
+*/
 
 .rulla {
     width: 80px;
@@ -12,5 +14,13 @@
     background-repeat: repeat-y;
     border: 2px solid black;
     margin: 0 5px;
+}
+
+#alrtteksti {
+    transition: all 1s;
+}
+
+#alrt {
+    transition: all 1s;
 }
 
