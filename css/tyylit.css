@@ -17,10 +17,23 @@
 }
 
 #alrtteksti {
-    transition: all 1s;
+    transition: color 1s;
 }
 
 #alrt {
-    transition: all 1s;
+    transition-property: border-color, background-color;
+    transition-duration: 0.5s;
 }
 
+.kehys {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    margin: 0 4px;
+}
+
+.pienikuva {
+    content: url('../rulla80.png');
+    transform: scale(0.5) translate(0,var(--offset));
+    transform-origin: 0% 0%;
+}

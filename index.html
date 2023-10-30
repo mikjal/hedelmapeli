@@ -66,22 +66,21 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-row justify-content-center mt-1 rullatjanappulat">
-                                <div class="d-grid"><div class="rulla" id="rulla1"></div><button class="btn btn-sm mt-2 mx-2" id="rulla1button" onclick="tarkistaLukot(this);">Lukitse</button></div> <!-- "if (this.classList.contains('active')) { this.innerHTML = 'Lukittu'} else { this.innerHTML='Lukitse'}" -->
-                                <div class="d-grid"><div class="rulla" id="rulla2"></div><button class="btn btn-sm mt-2 mx-2" id="rulla2button" onclick="tarkistaLukot(this);">Lukitse</button></div>
-                                <div class="d-grid"><div class="rulla" id="rulla3"></div><button class="btn btn-sm mt-2 mx-2" id="rulla3button" onclick="tarkistaLukot(this);">Lukitse</button></div>
-                                <div class="d-grid"><div class="rulla" id="rulla4"></div><button class="btn btn-sm mt-2 mx-2" id="rulla4button" onclick="tarkistaLukot(this);">Lukitse</button></div>
+                                <div class="d-grid"><div class="rulla" id="rulla1"></div><button class="btn btn-sm mt-2 mx-2" id="rulla1button" onclick="tarkistaLukot(this);" disabled>Lukitse</button></div> <!-- "if (this.classList.contains('active')) { this.innerHTML = 'Lukittu'} else { this.innerHTML='Lukitse'}" -->
+                                <div class="d-grid"><div class="rulla" id="rulla2"></div><button class="btn btn-sm mt-2 mx-2" id="rulla2button" onclick="tarkistaLukot(this);" disabled>Lukitse</button></div>
+                                <div class="d-grid"><div class="rulla" id="rulla3"></div><button class="btn btn-sm mt-2 mx-2" id="rulla3button" onclick="tarkistaLukot(this);" disabled>Lukitse</button></div>
+                                <div class="d-grid"><div class="rulla" id="rulla4"></div><button class="btn btn-sm mt-2 mx-2" id="rulla4button" onclick="tarkistaLukot(this);" disabled>Lukitse</button></div>
                             </div>
                             <div class="text-center mt-3">
-                                <button class="btn btn-primary btn-sm" style="width: 10rem;" onclick="pelaa();">Pelaa</button>
+                                <button class="btn btn-primary btn-sm" style="width: 10rem;" id="pelaabutton" onclick="pelaa();">Pelaa</button>
                             </div>
                         </div> <!-- end card-body -->
-                    </div>
-                </div>
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
                 <div class="col-md-4 col-lg-3 col-xl-2 px-1 mt-2">
                     <div class="card">
                         <div class="card-header"><h5 class="mb-0 text-center">Rahaa</h5></div>
-                        <div class="card-body text-center p-2 my-1"><h5 id="rahamaara">50 €</h5>
-                        </div>
+                        <div class="card-body text-center p-2 my-1"><h5 id="rahamaara">50 €</h5></div>
                         <div class="card-header card-footer"><h5 class="mb-0 text-center">Panos</h5></div>
                         <div class="card-body text-center p-2">
                             <div class="input-group mx-auto my-1" style="width: 6rem;">
@@ -89,14 +88,72 @@
                                 <input type="number" name="panos" id="panos" class="form-control" value="1" min="1" max="5" onblur="if (Number(this.value)<1 || Number(this.value)>5) { this.value=1; }">
                             </div>
                         </div>
-
-                    </div>
-                </div>
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
             </div> <!-- end row-->
             <div class="row justify-content-center mt-2">
                 <div class="col-md-12 col-lg-9 col-xl-6 px-1">
-                    <div id="alrt" class="alert alert-light text-center">
-                        <h5 class="mb-0" id="alrtteksti">Valitse panos (1-5€) ja paina Pelaa</h5>
+                    <div id="alrt" class="alert alert-primary text-center mb-0">
+                        <h5 class="mb-0" id="alrtteksti">Valitse panos ja paina Pelaa</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-2">
+                <div class="col-md-12 col-lg-9 col-xl-6 px-1">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h5 class="mb-0">Voittotaulukko</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="ms-1"><p class="mb-0 align-bottom">= 10x panos</p></div>
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="ms-1"><p class="mb-0 align-bottom">= 6x panos</p></div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="ms-1"><p class="mb-0 align-bottom">= 10x panos</p></div>
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="ms-1"><p class="mb-0 align-bottom">= 6x panos</p></div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: -160px"></div>
+                                    <div class="ms-1"><p class="mb-0 align-bottom">= 10x panos</p></div>
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="kehys"><img class="pienikuva" style="--offset: 0px"></div>
+                                    <div class="ms-1"><p class="mb-0 align-bottom">= 6x panos</p></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
