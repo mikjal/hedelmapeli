@@ -1,5 +1,5 @@
 const arvot = [0,0,0,0];
-let ekaKierros = true, rahat = 50, panos;
+let ekaKierros = true, rahat = 50, panos, voitot = 0;
 
 function pelaa() {
     panos = document.querySelector('#panos').value;
@@ -8,8 +8,11 @@ function pelaa() {
         /* vähennetään panos rahoista ja päivitetään rahamäärä */
         rahat -= panos;
         document.querySelector('#rahamaara').innerText = rahat + ' €';
-        /*  */
-        document.querySelector('#pelaabutton').disabled = true;
+
+        /* poistetaan nappulat käytöstä rullien pyörimisen ajaksi */
+        document.querySelectorAll('.pelialue button').forEach((bu) => {
+            bu.disabled = true;
+        });
 
         /* haetaan viimeinen pyoriva rulla ja lisätään siihen eventlistener */
         let viimeinen = '';
@@ -23,16 +26,16 @@ function pelaa() {
             document.querySelector(viimeinen).addEventListener('transitionend',siirtyminenPaattyy);
         }
         
-        paivitaAlert('','alert-light',false);
-
         /* pyöritetään rullia */
         document.querySelectorAll('.rulla').forEach((ele, ndx) => {
             arvot[ndx] = pyoritaRullaa(ele, ndx);
         });
 
+        paivitaInfo('Pelataan '+panos+'€ panoksella','alert-primary');
+
     } else {
         /* panos on liian suuri jäljellä olevaan rahamäärään verrattuna  */
-        paivitaAlert('Panos on suurempi kuin jäljellä olevat rahat!','alert-danger',true);
+        paivitaInfo('Panos on suurempi kuin jäljellä olevat rahat!','alert-danger');
     }
 }
 
@@ -78,11 +81,12 @@ function siirtyminenPaattyy(evnt) {
     }
 
     if (voitto != 0) {
-        paivitaAlert('Voitit '+(voitto*panos)+'€!','alert-success',true);
+        paivitaInfo('Voitit <strong>'+(voitto*panos)+'€</strong>!','alert-success');
         rahat += voitto*panos;
         document.querySelector('#rahamaara').innerText = rahat + ' €';
-    } else { /* ei voittoa */
-        paivitaAlert('Ei voittoa','alert-light',false)
+        voitot += voitto*panos;
+    } else {
+        paivitaInfo('Ei voittoa, yritä uudelleen!', 'alert-light');
     }
 
     /*
@@ -94,10 +98,12 @@ function siirtyminenPaattyy(evnt) {
     */
 
     if (ekaKierros && voitto == 0) {
+        /* ensimmäinen pelaus ja ei voittoa --> sallitaan lukitukset */
         ekaKierros = false;
         document.querySelectorAll('.rullatjanappulat button').forEach((ele) => {
             ele.disabled = false;
         });
+        paivitaInfo('Ei voittoa, yritä uudelleen! Voit käyttää myös lukitusta', 'alert-light');
     
     } else {
         ekaKierros = true;
@@ -108,6 +114,15 @@ function siirtyminenPaattyy(evnt) {
             ele.innerText = 'Lukitse';
         });
 
+    }
+
+    if (rahat == 0) {
+        document.querySelectorAll('.pelialue button').forEach((bu) => {
+            bu.disabled = true;
+        });
+        paivitaInfo('Peli päättyi, kiitos pelaamisesta', 'alert-primary');
+        document.querySelector('#lopputeksti').innerHTML = (voitot == 0) ? 'Et voittanut pelin aikana yhtään kertaa' : 'Voitit pelissä yhteensä <strong>'+voitot+'€</strong>!';
+        document.querySelector('#loppualert').style.display = 'initial';
     }
 }
 
@@ -124,55 +139,29 @@ function tarkistaLukot(src) {
         src.classList.toggle('active');
         src.innerText = (src.innerText == 'Lukitse') ? 'Lukittu' : 'Lukitse';
     } else {
-        paivitaAlert('Kaikkia rullia ei voi lukita yhtäaikaa!','alert-danger',true)
+        paivitaInfo('Kaikkia rullia ei voi lukita yhtäaikaa!','alert-danger');
     }
     
 
 }
 
-let vanhaAlert = {teksti: '', vari: ''};
-
-function poistaVanhaLuokka() {
+function paivitaInfo(teksti, tyyppi) {
     const alertDiv = document.querySelector('#alrt');
-    let vanhaVari = '';
 
+    /* poistetaan tällä hetkellä käytössä oleva luokka */
     for (let ln of alertDiv.classList.values()) {
         if (ln.indexOf('alert-') >= 0) {
-            vanhaVari = ln;
             alertDiv.classList.remove(ln);
         }
     }
-
-    return vanhaVari;
-}
-
-function paivitaAlert(teksti,vari,palautaNykyinen) {
-
-    vanhaAlert.teksti = document.querySelector('#alrtteksti').innerText;
-    vanhaAlert.vari = poistaVanhaLuokka();
-
-    document.querySelector('#alrt').classList.add(vari);
-    if (teksti != '') {
-        document.querySelector('#alrtteksti').innerText = teksti;
-        document.querySelector('#alrtteksti').style.opacity = 1;
-    } else {
-        document.querySelector('#alrtteksti').innerText = '#';
-        document.querySelector('#alrtteksti').style.opacity = 0;
-    }
-    
-
-    if (palautaNykyinen) {
-        setTimeout(palautaAlert,2000);
+    /* ja asetetaan uudet teksti ja uusi luokka */
+    document.querySelector('#alrtteksti').innerHTML = teksti;
+    alertDiv.classList.add(tyyppi);
+    if (tyyppi == 'alert-success') {
+        document.querySelector('#alrtteksti').classList.add('voittoanim');
+        setTimeout(() => {
+            document.querySelector('#alrtteksti').classList.remove('voittoanim');
+        }, 3500 );
     }
 }
 
-function palautaAlert() {
-    poistaVanhaLuokka();
-    document.querySelector('#alrt').classList.add(vanhaAlert.vari);
-    document.querySelector('#alrtteksti').innerText = vanhaAlert.teksti;
-
-    if (vanhaAlert.teksti == '#') {
-        document.querySelector('#alrtteksti').style.opacity = 0;
-    }
-    
-}

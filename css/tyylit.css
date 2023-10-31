@@ -13,11 +13,11 @@
     background-position: 0px 0px;
     background-repeat: repeat-y;
     border: 2px solid black;
-    margin: 0 5px;
+    margin: 0 4px;
 }
 
 #alrtteksti {
-    transition: color 1s;
+    transition: color 0.5s;
 }
 
 #alrt {
@@ -30,10 +30,35 @@
     height: 40px;
     overflow: hidden;
     margin: 0 4px;
+    border: 1px solid black;
 }
 
 .pienikuva {
     content: url('../rulla80.png');
     transform: scale(0.5) translate(0,var(--offset));
     transform-origin: 0% 0%;
+}
+
+.voittotaulukko p {
+    width: 5.5em;
+}
+
+#varoitus {
+    display: none;
+}
+
+@media screen and (max-width: 360px) {
+    #varoitus {
+        display: block;
+    }
+}
+
+@keyframes voitto {
+    0%  { scale: 1; }
+    50% { scale: 1.5;}
+    100% { scale: 1; }
+}
+
+.voittoanim {
+    animation: voitto 1s ease 0s 2 normal;
 }
