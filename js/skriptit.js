@@ -65,6 +65,7 @@ function siirtyminenPaattyy(evnt) {
 
     /* poistetaan tämä eventlistener */
     evnt.target.removeEventListener('transitionend',siirtyminenPaattyy);
+
     /* sallitaan pelaa-napin käyttö */
     document.querySelector('#pelaabutton').disabled = false;
 
@@ -75,18 +76,10 @@ function siirtyminenPaattyy(evnt) {
         for (luku of arvot) { /* käydään läpi kaikki rullat */
             lkm = (luku == i) ? lkm + 1 : lkm;
         }
+        /* määritellään voitto: onko kolme seiskaa tai neljä samaa kuvaa, jos ei niin voitto=0 */
         voitto = (i == 3 && lkm == 3) ? 5 : (lkm == 4) ? voittotaulukko[i] : 0;
         if (voitto != 0) { break; }
         
-    }
-
-    if (voitto != 0) {
-        paivitaInfo('Voitit <strong>'+(voitto*panos)+'€</strong>!','alert-success');
-        rahat += voitto*panos;
-        document.querySelector('#rahamaara').innerText = rahat + ' €';
-        voitot += voitto*panos;
-    } else {
-        paivitaInfo('Ei voittoa, yritä uudelleen!', 'alert-light');
     }
 
     /*
@@ -97,13 +90,22 @@ function siirtyminenPaattyy(evnt) {
     4 = meloni
     */
 
+    if (voitto != 0) {
+        paivitaInfo('Voitit <strong>'+(voitto*panos)+'€</strong>!','alert-success');
+        rahat += voitto*panos;
+        document.querySelector('#rahamaara').innerText = rahat + ' €';
+        voitot += voitto*panos;
+    } else {
+        paivitaInfo('Ei voittoa, yritä uudelleen!', 'alert-light');
+    }
+
     if (ekaKierros && voitto == 0) {
         /* ensimmäinen pelaus ja ei voittoa --> sallitaan lukitukset */
         ekaKierros = false;
         document.querySelectorAll('.rullatjanappulat button').forEach((ele) => {
             ele.disabled = false;
         });
-        paivitaInfo('Ei voittoa, yritä uudelleen! Voit käyttää myös lukitusta', 'alert-light');
+        paivitaInfo('Ei voittoa, yritä uudelleen! Voit myös käyttää lukitusta', 'alert-light');
     
     } else {
         ekaKierros = true;
@@ -157,11 +159,13 @@ function paivitaInfo(teksti, tyyppi) {
     /* ja asetetaan uudet teksti ja uusi luokka */
     document.querySelector('#alrtteksti').innerHTML = teksti;
     alertDiv.classList.add(tyyppi);
+    
+    /* animoidaan voittoteksti */
     if (tyyppi == 'alert-success') {
         document.querySelector('#alrtteksti').classList.add('voittoanim');
         setTimeout(() => {
             document.querySelector('#alrtteksti').classList.remove('voittoanim');
-        }, 3500 );
+        }, 2500 );
     }
 }
 
